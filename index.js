@@ -44,8 +44,14 @@ document.getElementById('play-game').addEventListener('click', event => {
         window.setInterval(() => {
             board.render();
         }, 50);
-        window.setInterval(() => {
-            board.fall();
+        let tick = window.setInterval(() => {
+            if(!board.failGame()){
+                board.fall();
+            }
+            else{
+                gameOver();
+                window.clearInterval(tick);
+            }
         }, 500);
     }, 1000)
 
@@ -145,6 +151,11 @@ function buildBackground() {
         return html;
     }
     document.getElementById('hex').innerHTML = '<hex></hex>' + buildRight() + buildLeft() + buildTopBot();
+}
+
+//TODO: game over logic
+function gameOver(){
+
 }
 
 buildBackground();

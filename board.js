@@ -9,6 +9,7 @@ class Board {
         this.canvas = document.getElementById('board');
         this.context = this.canvas.getContext('2d');
         this.context.scale(40, 40);
+        this.end = false;
         this.colors = [
             null,
             '#F07167',
@@ -83,19 +84,25 @@ class Board {
         this.activePiece.shape = this.pieces['TJLOSZI'[Math.floor(Math.random() * Math.floor(7))]];
         this.activePiece.pos.y = 0;
         this.activePiece.pos.x = 3;
+        //if new piece immediately collides, game is lost
+        if(this.collision()) {
+            this.end = true;
+        }
     }
 
     //trigger falling piece
     fall() {
-        this.activePiece.pos.y++;
-        if (this.collision()) {
-            this.activePiece.pos.y--;
-            this.mergeToBoard();
-            this.createNewPiece();
-            this.checkFilledRows();
-            this.failGame();
+        if(!this.end){
+            this.activePiece.pos.y++;
+            if (this.collision()) {
+                this.activePiece.pos.y--;
+                this.mergeToBoard();
+                this.createNewPiece();
+                this.checkFilledRows();
+                this.failGame();
+            }
+            this.render();
         }
-        this.render();
     }
 
     // check if current piece has collided with the placed pieces
@@ -141,7 +148,7 @@ class Board {
 
     //check if game is lost
     failGame() {
-        //TODO: end game if piece is merged outside of bounds or into another
+        return this.end;
     }
 
     checkFilledRows() {
