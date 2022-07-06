@@ -1,5 +1,5 @@
 import { Board } from './board.js';
-const board = new Board();
+var board = new Board();
 let playing = false;
 
 function sleep(ms) {
@@ -41,7 +41,7 @@ document.getElementById('play-game').addEventListener('click', event => {
         document.getElementById('game').hidden = false;
         document.getElementById('game').classList.add("fadeIn");
         board.createNewPiece();
-        window.setInterval(() => {
+        let render = window.setInterval(() => {
             board.render();
         }, 50);
         let tick = window.setInterval(() => {
@@ -51,6 +51,31 @@ document.getElementById('play-game').addEventListener('click', event => {
             else{
                 gameOver();
                 window.clearInterval(tick);
+                window.clearInterval(render);
+            }
+        }, 500);
+    }, 1000)
+
+});
+
+document.getElementById('restartButton').addEventListener('click', event => {
+    playing = true;
+    document.getElementById('restartButton').hidden = true;
+    document.getElementById('restartButton').classList.remove("fadeIn");
+    board.reset()
+    window.setTimeout(() => {     
+        board.createNewPiece();
+        let render = window.setInterval(() => {
+            board.render();
+        }, 50);
+        let tick = window.setInterval(() => {
+            if(!board.failGame()){
+                board.fall();
+            }
+            else{
+                gameOver();
+                window.clearInterval(tick);
+                window.clearInterval(render);
             }
         }, 500);
     }, 1000)
@@ -153,9 +178,10 @@ function buildBackground() {
     document.getElementById('hex').innerHTML = '<hex></hex>' + buildRight() + buildLeft() + buildTopBot();
 }
 
-//TODO: game over logic
 function gameOver(){
-
+    playing = false;
+    document.getElementById('restartButton').hidden = false;
+    document.getElementById('restartButton').classList.add("fadeIn");
 }
 
 buildBackground();

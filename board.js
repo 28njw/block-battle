@@ -151,6 +151,18 @@ class Board {
         return this.end;
     }
 
+    //reset all values to initial
+    reset(){
+                //create an empty board
+                this.state = new Array(20).fill(0).map(() => new Array(10).fill(0));
+                //holds the active tetris piece
+                this.activePiece = { pos: { x: 0, y: 0 }, shape: null };
+                //initialize user score to 0
+                this.score = 0;
+                this.end = false;
+    }
+
+    //check if any rows are completed and update score
     checkFilledRows() {
         let score = 0;
         check: for (let y = this.state.length - 1; y > 0; --y) {
