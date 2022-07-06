@@ -4,6 +4,8 @@ class Board {
         this.state = new Array(20).fill(0).map(() => new Array(10).fill(0));
         //holds the active tetris piece
         this.activePiece = { pos: { x: 0, y: 0 }, shape: null };
+        //initialize user score to 0
+        this.score = 0;
         this.canvas = document.getElementById('board');
         this.context = this.canvas.getContext('2d');
         this.context.scale(40, 40);
@@ -143,6 +145,7 @@ class Board {
     }
 
     checkFilledRows() {
+        let score = 0;
         check: for (let y = this.state.length - 1; y > 0; --y) {
             for (let x = 0; x < this.state[y].length; ++x) {
                 if (this.state[y][x] === 0) {
@@ -151,7 +154,11 @@ class Board {
             }
             this.state.splice(y, 1);
             this.state.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+            score = (10 + (score * 2));
         }
+        this.score += score;
+        //update visual of score to user
+        document.getElementById('score').innerHTML = this.score;
     }
 }
 export { Board };

@@ -218,12 +218,14 @@ hex {
   }
 }
 
-.mainHeader {
+#mainHeader {
   font-family: 'heading0';
   height: 40vh;
 }
 
-
+#interactiveButtons {
+  margin-top: 3em;
+}
 
 .main-header {
   letter-spacing: .2rem;
@@ -238,8 +240,20 @@ hex {
 
 .battle-title {
   font-size: 6em;
-  padding: 40px 20px 160px 20px;
-  margin-bottom: -160px
+  padding: 275px 20px 200px 20px;
+}
+
+.scoreboard {
+  font-family: 'heading0';
+  font-size: 3rem;
+  letter-spacing: .2rem;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  color: #D33FFF;
+  text-align: center;
+  overflow: visible;
+  margin-top: 2rem;
 }
 
 .neon {
@@ -248,6 +262,7 @@ hex {
   animation: neon 3s infinite, fadein 1s;
   transform: rotateZ(360deg);
 }
+
 
 .button {
   color: white;

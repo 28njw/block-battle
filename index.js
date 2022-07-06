@@ -38,8 +38,8 @@ document.getElementById('play-game').addEventListener('click', event => {
     window.setTimeout(() => {
         document.getElementById("mainHeader").remove();
         document.getElementById("interactiveButtons").remove();
-        document.getElementById('board').hidden = false;
-        document.getElementById('board').classList.add("fadeIn");
+        document.getElementById('game').hidden = false;
+        document.getElementById('game').classList.add("fadeIn");
         board.createNewPiece();
         window.setInterval(() => {
             board.render();

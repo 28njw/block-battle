@@ -11,13 +11,16 @@
 </head>
 
 <body>
-  <canvas id="board" width="400" height="800" hidden></canvas>
+  <div id="game" hidden>
+    <div class="scoreboard neon" id="scoreboard">Score: <span id="score">0</span></div>
+    <canvas id="board" width="400" height="800"></canvas>
+  </div>
   <div class="hex" id="mainHeader">
     <div class="main-header neon battle-title">
       BLOCK Battle
     </div>
   </div>
-  <div id="interactiveButtons" style="font-family: 'heading0';" class="row mt-10">
+  <div id="interactiveButtons" style="font-family: 'heading0';" class="row">
     <div class="neon main-header col-6" style="font-size: 1.3em;">
       <a class="button button-neon" id="play-game">Play <span><i class="fa-solid fa-angles-right"></i></span></a>
     </div>
