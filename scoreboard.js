@@ -30,5 +30,10 @@ class Scoreboard {
         this.username = name;
     }
 
+    //get username
+    getUsername(){
+        return this.username;
+    }
+
 
 }

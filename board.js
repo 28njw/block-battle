@@ -59,6 +59,11 @@ class Board {
         };
     }
 
+    //get the current score
+    getScore(){
+        return this.score;
+    }
+
     //redraw the board state within the given element
     render(element) {
         this.context.fillStyle = '#000000';

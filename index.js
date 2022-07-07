@@ -1,5 +1,7 @@
 import { Board } from './board.js';
+import { Scoreboard } from './scoreboard.js';
 var board = new Board();
+const scoreboard = new Scoreboard();
 let playing = false;
 
 function sleep(ms) {
@@ -230,6 +232,7 @@ function gameOver(){
     playing = false;
     document.getElementById('restartButton').hidden = false;
     document.getElementById('restartButton').classList.add("fadeIn");
+    await fetch('/submitScore', {method: 'POST', body: JSON.stringify({ username: scoreboard.getUsername(), score: board.getScore() }),})
 }
 
 buildBackground();
