@@ -2,7 +2,7 @@
   "name": "noah-326-block-battle",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
