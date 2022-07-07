@@ -1,4 +1,4 @@
-class Scoreboard {
+export class Scoreboard {
     constructor(){
         this.leaderboard = this.getLeaderboard();
         this.username = 'AAA';
