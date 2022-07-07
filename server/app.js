@@ -21,3 +21,7 @@ app.post('/submitScore', async (request, response) => {
 app.all('*', async (request, response) => {
     response.status(404).send(`Not found: ${request.path}`);
 });
+
+app.listen(port, () => {
+    console.log(`Listening at http://localhost:${port}`);
+});
