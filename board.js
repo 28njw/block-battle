@@ -85,14 +85,14 @@ class Board {
         this.activePiece.pos.y = 0;
         this.activePiece.pos.x = 3;
         //if new piece immediately collides, game is lost
-        if(this.collision()) {
+        if (this.collision()) {
             this.end = true;
         }
     }
 
     //trigger falling piece
     fall() {
-        if(!this.end){
+        if (!this.end) {
             this.activePiece.pos.y++;
             if (this.collision()) {
                 this.activePiece.pos.y--;
@@ -152,14 +152,14 @@ class Board {
     }
 
     //reset all values to initial
-    reset(){
-                //create an empty board
-                this.state = new Array(20).fill(0).map(() => new Array(10).fill(0));
-                //holds the active tetris piece
-                this.activePiece = { pos: { x: 0, y: 0 }, shape: null };
-                //initialize user score to 0
-                this.score = 0;
-                this.end = false;
+    reset() {
+        //create an empty board
+        this.state = new Array(20).fill(0).map(() => new Array(10).fill(0));
+        //holds the active tetris piece
+        this.activePiece = { pos: { x: 0, y: 0 }, shape: null };
+        //initialize user score to 0
+        this.score = 0;
+        this.end = false;
     }
 
     //check if any rows are completed and update score
@@ -174,7 +174,7 @@ class Board {
             this.state.splice(y, 1);
             this.state.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
             score = (10 + (score * 2));
-        }
+        } 
         this.score += score;
         //update visual of score to user
         document.getElementById('score').innerHTML = this.score;

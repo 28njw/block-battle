@@ -6,6 +6,54 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+if(window.localStorage.getItem('animated') === null) {
+    window.localStorage.setItem('animated', true);
+}
+
+let backgroundAnimated = window.localStorage.getItem('animated');
+
+console.log(window.localStorage.getItem('animated'));
+
+//remove the background hex animation
+function removeHexAnimation(){
+    console.log('removing animation');
+    let hexes = document.getElementsByTagName("hex");
+    for(let i = 0; i < hexes.length; ++i) {
+        hexes[i].style.animation = '';
+    }
+}
+
+//add the background hex animation
+function addHexAnimation(){
+    let hexes = document.getElementsByTagName("hex");
+    for(let i = 0; i < hexes.length; ++i) {
+        hexes[i].remove();
+    }
+    buildBackground();
+}
+
+//if browser storage says background shouldn't be animated, remove animation
+if(backgroundAnimated == 'false') {
+    window.setTimeout(() => {
+        removeHexAnimation();
+    }, 50);
+}
+
+document.getElementById('settingsButton').addEventListener('click', event => {
+    if(backgroundAnimated == 'true') {
+        console.log('removing animation');
+        removeHexAnimation();
+        window.localStorage.setItem('animated', 'false');
+        backgroundAnimated = 'false';
+    }
+    else {
+        console.log('adding animation');
+        addHexAnimation();
+        window.localStorage.setItem('animated', 'true');
+        backgroundAnimated = 'true';
+    }
+});
+
 document.addEventListener('keydown', event => {
     if (playing) {
         if (event.keyCode === 37) {

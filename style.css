@@ -242,6 +242,20 @@ hex {
   bottom: 0;
 }
 
+#settingsButton {
+  font-size: 1.3em;
+  font-family: 'heading0';
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  left: 40%;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  top: 3%;
+  bottom: 0;
+}
+
 .main-header {
   letter-spacing: .2rem;
   text-transform: uppercase;
