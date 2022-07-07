@@ -6,7 +6,7 @@ const { Pool } = pg;
 class Database {
     constructor(){
         this.url = 'postgres://cuegmbdolvultw:f3a643ef3a23cff218f4f7ae7fcf7d7edf8246d5c152b51228c84f687ea8474d@ec2-54-159-22-90.compute-1.amazonaws.com:5432/dfja7ah0kkcic0';
-        this.leaderboard = this.getTopTen();
+        this.leaderboard = null;
     }
 
     async connect(){
@@ -48,5 +48,5 @@ class Database {
 }
 
 const database = new Database();
-await database.connect();
+
 export { database };
