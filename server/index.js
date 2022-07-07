@@ -1,4 +1,4 @@
-import { Express } from "express";
+import express from "express";
 import { database } from './database.js'
 
 const app = express();
