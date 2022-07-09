@@ -14,6 +14,7 @@ app.get('/getLeaderboard', async (request, response) => {
 });
 
 app.post('/submitScore', async (request, response) => {
+    console.log('submit score route');
     await database.submitScore(request.body);
     response.status(200).json({ status: 'success' });
 });

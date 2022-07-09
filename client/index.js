@@ -232,7 +232,9 @@ function gameOver(){
     playing = false;
     document.getElementById('restartButton').hidden = false;
     document.getElementById('restartButton').classList.add("fadeIn");
-    fetch('/submitScore', {method: 'POST', body: JSON.stringify({ username: scoreboard.getUsername(), score: board.getScore() }),})
+    fetch('/submitScore', {method: 'POST', headers: {
+        'Content-Type': 'application/json',
+      }, body: JSON.stringify({ username: scoreboard.getUsername(), score: board.getScore() })});
 }
 
 buildBackground();
