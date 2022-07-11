@@ -24,7 +24,6 @@ export class Scoreboard {
             this.leaderboard = res;
             return res;
         });;
-
     }
 
     //get the highest score saved on this computer

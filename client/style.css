@@ -256,6 +256,20 @@ hex {
   bottom: 0;
 }
 
+#usernameBoxDisplay {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-family: 'heading0';
+  position: relative;
+  z-index: 20;
+  left: 40%;
+  top: 4%;
+  color: white;
+  -webkit-animation: fadein 1s;
+  animation: neon 3s infinite, fadein 1s;
+}
+
 .main-header {
   letter-spacing: .2rem;
   text-transform: uppercase;
@@ -469,4 +483,16 @@ hex {
 .futuristic-text{
   color: white;
   font-family: 'heading0';
+}
+
+#usernameBox {
+  text-transform: uppercase;
+}
+
+input {
+  all: unset;
+  cursor: text;
+  position: relative;
+  z-index: 99 !important;
+  padding: 1rem 1rem 1rem 0rem;
 }

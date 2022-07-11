@@ -15,6 +15,8 @@ if(window.localStorage.getItem('animated') === null) {
 
 let backgroundAnimated = window.localStorage.getItem('animated');
 
+document.getElementById('usernameBox').value = (window.localStorage.getItem('username') == null ? 'AAA' : window.localStorage.getItem('username'));
+
 
 //remove the background hex animation
 function removeHexAnimation(){
@@ -40,6 +42,11 @@ if(backgroundAnimated == 'false') {
         removeHexAnimation();
     }, 50);
 }
+
+document.getElementById('usernameBox').addEventListener('keyup', event => {
+    window.localStorage.setItem('username', document.getElementById('usernameBox').value);
+    scoreboard.setUsername(document.getElementById('usernameBox').value);
+});
 
 document.getElementById('settingsButton').addEventListener('click', event => {
     if(backgroundAnimated == 'true') {
