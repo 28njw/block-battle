@@ -1,20 +1,29 @@
 export class Scoreboard {
     constructor(){
         this.leaderboard = this.getLeaderboard();
-        this.username = 'AAA';
+        window.localStorage.getItem('username') == null ? this.username = 'AAA' : this.username = window.localStorage.getItem('username');
     }
 
     render(element){
         let html = '<table>';
-        this.leaderboard.forEach((entry) => {
-            html += `<tr><td>${entry.name}</td><td>${entry.score}</td></tr>`;
-        });
+        for(let i = 0; i < this.leaderboard.length; ++i){
+            html += `<tr><td>${this.leaderboard[i].username}</td><td>${this.leaderboard[i].score}</td></tr>`;
+        }
         element.innerHTML = html + '</table>';
+        let score;
+        window.localStorage.getItem('highscore') == null ? score = 0 : score = window.localStorage.getItem('highscore');
+        html = this.username + ' : ' + String(score);
+        document.getElementById('clientLeaderboardBody').innerHTML = html;
     }
 
 
     //get the top leaderboard entries from the database
-    getLeaderboard(){
+    async getLeaderboard(){
+        await fetch('/getLeaderboard', {method: 'GET'}).then((response) => response.json())
+        .then((res) => {
+            this.leaderboard = res;
+            return res;
+        });;
 
     }
 
@@ -34,6 +43,4 @@ export class Scoreboard {
     getUsername(){
         return this.username;
     }
-
-
 }

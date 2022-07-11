@@ -3,6 +3,7 @@ import { Scoreboard } from './scoreboard.js';
 var board = new Board();
 const scoreboard = new Scoreboard();
 let playing = false;
+let shownLeaderboard = false;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -14,7 +15,6 @@ if(window.localStorage.getItem('animated') === null) {
 
 let backgroundAnimated = window.localStorage.getItem('animated');
 
-console.log(window.localStorage.getItem('animated'));
 
 //remove the background hex animation
 function removeHexAnimation(){
@@ -54,6 +54,21 @@ document.getElementById('settingsButton').addEventListener('click', event => {
         window.localStorage.setItem('animated', 'true');
         backgroundAnimated = 'true';
     }
+});
+
+document.body.addEventListener('click', event => {
+    if(shownLeaderboard){
+        closeLeaderboardModal();
+    }
+}, true); 
+
+document.getElementById("closeLeaderboard").addEventListener('click', event => {
+    closeLeaderboardModal();
+});
+
+document.getElementById("leaderboard").addEventListener('click', event => {
+    scoreboard.render(document.getElementById("leaderboardBody"));
+    openLeaderboardModal();
 });
 
 document.addEventListener('keydown', event => {
@@ -232,9 +247,24 @@ function gameOver(){
     playing = false;
     document.getElementById('restartButton').hidden = false;
     document.getElementById('restartButton').classList.add("fadeIn");
+    openLeaderboardModal();
     fetch('/submitScore', {method: 'POST', headers: {
         'Content-Type': 'application/json',
       }, body: JSON.stringify({ username: scoreboard.getUsername(), score: board.getScore() })});
+}
+
+//open the leaderboard display popup
+function openLeaderboardModal(){
+    let modal = document.getElementById("leaderboardModal");
+    shownLeaderboard = true;
+    modal.style.display = "block";
+}
+
+//close the leaderboard display popup
+function closeLeaderboardModal(){
+    let modal = document.getElementById("leaderboardModal");
+    shownLeaderboard = false;
+    modal.style.display = "none";
 }
 
 buildBackground();

@@ -9,12 +9,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static('client'));
 
 app.get('/getLeaderboard', async (request, response) => {
-    const scores = await database.getTopTen();
+    let scores = await database.getTopTen();
     response.status(200).json(scores);
 });
 
 app.post('/submitScore', async (request, response) => {
-    console.log('submit score route');
     await database.submitScore(request.body);
     response.status(200).json({ status: 'success' });
 });

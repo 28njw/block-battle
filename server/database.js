@@ -24,7 +24,7 @@ class Database {
 
     //get top 10 score from database
     async getTopTen(){
-        const queryText = 'SELECT TOP 10 score FROM scores ORDER BY score DESC;';
+        const queryText = 'select * from scores order by score desc limit 10';
         const res = await this.client.query(queryText);
         console.log(res);
         this.leaderboard = res.rows;
@@ -44,11 +44,8 @@ class Database {
             min = 0;
         }
         if(entry.score > min){
-            console.log('submitting score...');
             const queryText = `INSERT INTO scores(username, score) VALUES ('${entry.username}', ${entry.score})`;
-            console.log(queryText);
             const res = await this.client.query(queryText);
-            console.log(res);
             return res.rows;
         }
     }

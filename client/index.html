@@ -18,9 +18,11 @@
       <a class="button button-neon">Restart <span><i class="fa-solid fa-angles-right"></i></span></a>
     </div>
   </div>
-
   <div class="neon main-header" id="settingsButton">
     <a class="button button-neon" id="changeAnimation">Animation <i class="fa-solid fa-power-off"></i></a>
+  </div>
+  <div class="neon main-header mt-2 mb-n3" id="settingsButton">
+    <span class="futuristic-text">Username: <span class="button button-neon" id="usernameBox">AAA</span></span>
   </div>
   <div class="hex" id="mainHeader">
     <div class="main-header neon battle-title">
@@ -36,5 +38,22 @@
     </div>
   </div>
   <div id="hex"></div>
+  <div id="leaderboardModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" id="closeLeaderboard"><i class="fa-solid fa-xmark"></i></span>
+        <h2>Top Scores</h2>
+      </div>
+      <div class="modal-body" id="leaderboardBody">
+        <p>Leaderboard</p>
+      </div>
+      <div class="modal-header">
+        <h2>Your Top Score</h2>
+      </div>
+      <div class="modal-body" id="clientLeaderboardBody">
+        <p>Leaderboard</p>
+      </div>
+    </div>
+  </div>
 
 </html>
