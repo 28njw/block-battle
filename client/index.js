@@ -50,13 +50,11 @@ document.getElementById('usernameBox').addEventListener('keyup', event => {
 
 document.getElementById('settingsButton').addEventListener('click', event => {
     if(backgroundAnimated == 'true') {
-        console.log('removing animation');
         removeHexAnimation();
         window.localStorage.setItem('animated', 'false');
         backgroundAnimated = 'false';
     }
     else {
-        console.log('adding animation');
         addHexAnimation();
         window.localStorage.setItem('animated', 'true');
         backgroundAnimated = 'true';
@@ -255,6 +253,12 @@ function gameOver(){
     document.getElementById('restartButton').hidden = false;
     document.getElementById('restartButton').classList.add("fadeIn");
     openLeaderboardModal();
+    //update browser storage of users high score if necessary
+    if(window.localStorage.getItem('highscore') != null){
+        board.getScore() > window.localStorage.getItem('highscore') ? window.localStorage.setItem('highscore', board.getScore()) : (null);
+    } else {
+        window.localStorage.setItem('highscore', board.getScore())
+    }
     fetch('/submitScore', {method: 'POST', headers: {
         'Content-Type': 'application/json',
       }, body: JSON.stringify({ username: scoreboard.getUsername(), score: board.getScore() })});
