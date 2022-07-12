@@ -286,7 +286,7 @@ async function glitch(el, len) {
         await sleep(Math.random() * (100 - 25) + 25);
     }
 }
+
 function fadeOut(element) {
     element.classList.add("fadeOut");
 }
-

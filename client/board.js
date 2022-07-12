@@ -170,16 +170,17 @@ class Board {
     //check if any rows are completed and update score
     checkFilledRows() {
         let score = 0;
-        check: for (let y = this.state.length - 1; y > 0; --y) {
-            for (let x = 0; x < this.state[y].length; ++x) {
-                if (this.state[y][x] === 0) {
-                    continue check;
-                }
+        let filledrows = [];
+        for (let y = this.state.length - 1; y > 0; --y) {
+            if(this.state[y].every((value) => value > 0)){
+                filledrows.push(y);
             }
-            this.state.splice(y, 1);
+        }
+        for(let i = 0; i < filledrows.length; ++i){
+            this.state.splice(filledrows[i], 1);
             this.state.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
             score = (10 + (score * 2));
-        } 
+        }
         this.score += score;
         //update visual of score to user
         document.getElementById('score').innerHTML = this.score;
